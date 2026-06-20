@@ -1,0 +1,34 @@
+import SubmitPage from '@/components/blocks/submit/submit'
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      '@id': `${process.env.NEXT_PUBLIC_APP_URL}#website`,
+      name: 'Ink - Blog Landing Page',
+      description:
+        'Ink is a free Shadcn UI Blog Landing Page template to publish articles, insights, and categories with a clean, fast, and readable layout.',
+      url: `${process.env.NEXT_PUBLIC_APP_URL}`,
+      inLanguage: 'en-US'
+    }
+  ]
+}
+
+const Home = () => {
+  return (
+    <div>
+      <SubmitPage />
+      {/* Add JSON-LD to your page */}
+      <script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c')
+        }}
+      />
+    </div>
+  )
+}
+
+export default Home
